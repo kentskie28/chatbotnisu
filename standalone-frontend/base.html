@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NISU AI</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="chatbox chatbox--hidden">
+        <div class="chatbox__support">
+            <div class="chatbox__header">
+                <div class="chatbox__image--header">
+                    <img src="nisulogonobg.png" alt="image">
+                </div>
+                <div class="chatbox__content--header">
+                    <h4 class="chatbox__heading--header">NISU AI</h4>
+                    <p class="chatbox__description--header">Northern Iloilo State University Chatbot Support</p>
+                </div>
+                <button class="chatbox__exit">X</button>
+            </div>
+            <div class="chatbox__messages">
+                <div></div>
+                <div class="suggested-replies"></div>
+            </div>
+            <div id="map" class="map-container"></div>
+            <div class="chatbox__footer">
+                <select id="language-select">
+                    <option value="english">English</option>
+                    <option value="tagalog">Tagalog</option>
+                </select>
+                <input type="text" placeholder="Write a message...">
+                <button class="chatbox__send--footer send__button">➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chatbox__button">
+        <button id="chat_button"><img src="nisulogonobg.png" /></button>
+        <button id="close_chatbox_button" style="display: none;"></button>
+    </div>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>
