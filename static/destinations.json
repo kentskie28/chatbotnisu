@@ -1,0 +1,39 @@
+{
+  "destinations": [
+    { 
+    "name": "NISU main",
+    "destinationlat": 11.458703622929997,
+    "destinationlon": 123.15533961258637
+  },
+  { 
+    "name": "NISU west",
+    "destinationlat": 11.45388943981234, 
+    "destinationlon": 123.14799422698653
+  },
+  { 
+    "name": "Cashier",
+    "destinationlat": 11.45888044713355, 
+    "destinationlon": 123.15536352329327
+  },
+  { 
+    "name": "Registrar",
+    "destinationlat": 11.459030006664996, 
+    "destinationlon": 123.15556085331198
+  },
+  { 
+    "name": "OSAS",
+    "destinationlat": 11.458764408620167,    
+    "destinationlon": 123.15589762971646
+  },
+  { 
+    "name": "Cics Department",
+    "destinationlat": 11.454042956945338,   
+    "destinationlon": 123.14690358568133
+  },
+  { 
+    "name": "College of Engineering Department",
+    "destinationlat": 11.453674922483003, 
+    "destinationlon": 123.14771361310994
+  }
+  ]
+}
