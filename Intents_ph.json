@@ -1,0 +1,90 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "musta",
+        "kamusta",
+        "Hello",
+        "Good Evening",
+        "Good Afternoon",
+        "Good morning"
+      ],
+      "responses": [
+        "Hi ako ay si NISU BOT. Paano kita matutulungan?",
+        "Kamusta, ano ang maaari kong gawin para sa iyo?",
+        "Kamusta, paano ako makakatulong?"
+      ]
+    },
+    {
+        "tag": "location",
+        "patterns": [
+        "Where is", 
+        "located", 
+        "location", 
+        "where can I find", 
+        "how to go",
+        "how to get to",
+        "find", 
+        "Saan",
+        "Papunta",
+        "diin"
+      ],
+        "responses": [
+        "Maaari ko bang i-access ang iyong lokasyon upang ipakita sa iyo ang mapa?"
+        ]
+      },
+    {
+      "tag": "Grades_INC",
+      "patterns": [
+        "INC",
+        "What to do with INC Grade",
+        "Grades",
+        "Incomplete grades?",
+        "How to remove INC Grade",
+        "5.0 Grades"
+      ],
+      "responses": [
+        "Ask your professor"
+      ]
+    },
+    {
+      "tag": "Available_Courses",
+      "patterns": [
+        "What is the Courses Offered",
+        "What are the Courses that is available",
+        "Courses in NISU",
+        "Available Courses"
+      ],
+      "responses": [
+        "Madaming Courses ang available dito sa NISU"
+      ]
+    },
+    {
+      "tag": "Thanks",
+      "patterns": [
+        "Thank you",
+        "ggg",
+        "TY",
+        "Thanks",
+        "Salamat"
+      ],
+      "responses": [
+        "Walang anuman."
+      ]
+    },
+    {
+      "tag": "Description_CICS",
+      "patterns": [
+          "What is CICS?",
+          "Ano ang CICS",
+          "About CICS"
+      ],
+      "responses": [
+          "CICS (College of Information in Computing Studies)"
+      ]
+     }
+  ]
+}

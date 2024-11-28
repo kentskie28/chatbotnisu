@@ -1,0 +1,258 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "How are you",
+        "Hello",
+        "Good morning",
+        "Hey"
+      ],
+      "responses": [
+        "Hi, I am NISUBOT a chatbot for procedural and directional support."
+      ],
+      "secondary_responses":[
+        "How, can I assist you today?",
+        "What can I help you with?"
+      ],
+      "suggestions":[
+        "Procedural",
+        "Directional"
+      ],
+      "context_set": ""
+    },
+    {
+      "tag": "Procedural",
+      "patterns": [
+        "Procedural"
+      ],
+      "responses": [
+        "What is your concern?"
+      ],
+      "secondary_responses":[
+        "Can you be more specific?"
+      ],
+      "suggestions":[
+        "Registrar", "Cashier",  "Registrar About Incomplete", "Library"
+      ],
+      "context_set": ""
+    },
+    {
+      "tag": "rental",
+      "patterns": [
+        "can i rent",
+        "Can we rent a moped"
+      ],
+      "responses": [
+        "today or next week."
+      ],
+      "secondary_responses":[
+        ""
+      ],
+      "context_set": "rentalday"
+    },
+    {
+      "tag": "today",
+      "patterns": [
+        "today",
+        "next week"
+      ],
+      "responses": [
+        "okay next week or today."
+      ],
+      "secondary_responses":[
+        ""
+      ],
+      "context_set": ""
+    },
+    {
+      "name": "Registrar",
+      "tag": "registrar",
+      "patterns": [
+        "about registrar",
+        "what is registrar",
+        "what to do in registrar"
+      ],
+      "responses": [
+        "Registrar processes registration requests, schedules classes and maintains class lists, enforces the rules for entering or leaving classes, and keeps a permanent record of grades and marks."
+      ],
+      "secondary_responses":[
+        ""
+      ],
+      "suggestions":[
+        "Registrar About Incomplete"
+      ],
+      "context_set": "registrar"
+    },
+    {
+      "name": "registrar",
+      "tag": "registrar_open",
+      "patterns": [
+        "today",
+        "open hour of registrar",
+        "when is registrar available",
+        "open time of registrar"
+      ],
+      "responses": [
+        "Registrar is available every weekdays from 8:00 am to 11:00 am. And 1:00 pm to 5:00 pm"
+      ],
+      "secondary_responses":[
+        "What would you like to ask?"
+      ],
+      "context_set": "registrar"
+    },
+    {
+      "name": "registrar",
+      "tag": "Registrar about incomplete",
+      "patterns": [
+        "what to do in INC registrar",
+        "procedure for inc grades",
+        "how do i get completion form",
+        "where is the completion form"
+      ],
+      "responses": [
+        "You can get the completion form by, paying at the cashier. After paying at the cashier go to the registrar and give your receipt."
+      ],
+      "secondary_responses":[
+        "Feel free to ask me if you still have questions"
+      ],
+      "context_set": "registrar"
+    },
+    {
+      "name": "registrar",
+      "tag": "registrar_about_tor",
+      "patterns": [
+        "where to get tor",
+        "tor how to get",
+        "what is tor",
+        "transcript of records"
+      ],
+      "responses": [
+        "TOR or Transcript of records can be claimed on registrar."
+      ],
+      "secondary_responses":[
+        ""
+      ],
+      "context_set": "registrar"
+    },
+    {
+      "name": "cashier",
+      "tag": "cashier_about",
+      "patterns": [
+        "what is cashier",
+        "what does cashier do",
+        "cashier",
+        "cashier"
+      ],
+      "responses": [
+        "cashier is about"
+      ],
+      "secondary_responses":[
+        "What would you like to ask?"
+      ],
+      "context_set": "cashier"
+    },
+    {
+      "name": "cashier",
+      "tag": "cashier_open",
+      "patterns": [
+        "today",
+        "open hour of cashier",
+        "when is cashier available",
+        "open time of cashier"
+      ],
+      "responses": [
+        "cashier is available every weekdays from 8:00 am to 11:00 am. And 1:00 pm to 5:00 pm"
+      ],
+      "secondary_responses":[
+        "What would you like to ask?"
+      ],
+      "context_set": "cashier"
+    },
+    {
+      "tag": "location_confirmation",
+      "patterns": [
+        "Where is",
+        "Show me",
+        "Find",
+        "Location of"
+      ],
+      "responses": [
+        "Can I access your location to show you the map?"
+      ],
+      "secondary_responses":[
+        ""
+      ],
+      "context_set": "location"
+    },
+    {
+      "tag": "grades",
+      "patterns": [
+        "Can you tell me about the grading system?",
+        "How do grades work?",
+        "Explain the grades",
+        "What is the grading system?"
+      ],
+      "responses": [
+        "Our grading system uses the 5-Point Scale wherein the highest grade is a 1.00 and the lowest is a 5.00 The lowest passing mark is actually a 3.00. Although usually not depicted, a grade of 4.00 is equivalent to a grade of incomplete. If the school does not use the grade point 4.00, it will use INC instead.(failing mark).Do you need more specific information about a particular grade?"
+      ],
+      "secondary_responses":[
+        ""
+      ],
+      "context_set": "grades",
+      "context_filter": ""
+    },
+    {
+      "tag": "grades_inc",
+      "patterns": [
+        "What is an INC?",
+        "Explain INC grades",
+        "i have failure grades",
+        "5.0 grades",
+        "I have INC grades",
+        "Incomplete grades"
+      ],
+      "responses": [
+        "An INC stands for 'Incomplete.' It is given when a student hasn't completed all course requirements. Would you like to know how to complete an INC?"
+      ],
+      "secondary_responses":[
+        ""
+      ],
+      "context_filter": "grades",  
+      "context_set": "grades"  
+    },
+    {
+      "tag": "completing_INC",
+      "patterns": [
+        "Yes, please",
+        "How do I complete an INC?",
+        "What should I do to complete my incomplete grade?",
+        "INC completion process"
+      ],
+      "responses": [
+        "To complete an INC, you need to submit the remaining coursework by the deadline set by your professor."
+      ],
+      "secondary_responses":[
+        ""
+      ],
+      "context_filter": "awaiting_INC_completion_clarification",  
+      "context_set": ""  
+    },
+    {
+      "tag": "location",
+      "patterns": [
+        "where is",
+        "please take me to",
+        "how to get to"
+      ],
+      "responses": [
+        "Great! Here's the map for your destination."
+      ],
+      "secondary_responses":[
+        ""
+      ],
+      "context_set": ""
+    }
+  ]
+}

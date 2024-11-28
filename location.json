@@ -1,0 +1,14 @@
+{
+    "locations": [
+        {
+            "latitude": 11.45868520692864,
+            "longitude": 123.15532932642297,
+            "description": "Nisu Main"
+        },
+        {
+            "latitude": 10.41238520692864,
+            "longitude": 122.15532932642297,
+            "description": "Nisu West"
+        }
+    ]
+}
