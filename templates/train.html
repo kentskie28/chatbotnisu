@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training - NISUBOT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <!-- Font Awesome CDN for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    /* Additional custom styles for the training page */
+    .training-container {
+        margin: 30px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f4f4f4;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .training-container h2 {
+        margin-bottom: 20px;
+    }
+
+    .training-container button {
+        font-size: 1rem;
+        padding: 10px 20px;
+        background-color: #0017e6;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .training-container button:hover {
+        background-color: #000b72;
+    }
+
+    .output {
+        margin-top: 20px;
+        font-size: 1rem;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+</style>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-brain"></i> NISU - BOT
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="{{ url_for('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="{{ url_for('train_model') }}"><i class="fas fa-tachometer-alt"></i> Training</a></li>
+            <li><a href="{{ url_for('settings_page') }}"><i class="fas fa-cogs"></i> Settings</a></li>
+            <li><a href="{{ url_for('index_get') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div id="dashboard-container">
+        <section class="training-container">
+            <h2>Train the NISUBOT</h2>
+            <p>Click the button below to start training. This may take some time, so please be patient.</p>
+
+            <button id="trainButton">Start Training</button>
+
+            <div id="output" class="output">
+                <!-- Output of the training process will appear here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 NISU AI. All rights reserved.
+    </footer>
+
+    <script>
+        document.getElementById("trainButton").onclick = function() {
+            document.getElementById("output").innerHTML = "Training started... Please wait.";
+            
+            fetch('/train', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Debug: Check what the response looks like
+                if (data.success) {
+                    document.getElementById("output").innerHTML = "Training completed successfully!<br>" + data.output;
+                } else {
+                    document.getElementById("output").innerHTML = "Error: " + data.message + "<br>" + data.error;
+                }
+            })
+            .catch(error => {
+                console.error('Error during training:', error); // Debug: Log errors
+                document.getElementById("output").innerHTML = "Failed to start training: " + error;
+            });
+        };
+    </script>
+</body>
+</html>

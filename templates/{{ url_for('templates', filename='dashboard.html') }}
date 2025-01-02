@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - NISU AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <div id="dashboard-container">
+        <section>
+            <h2>Intents</h2>
+            <textarea id="intents" rows="20" cols="50"></textarea>
+            <button id="save-intents">Save Intents</button>
+        </section>
+        <section>
+            <h2>Destinations</h2>
+            <textarea id="destinations" rows="20" cols="50"></textarea>
+            <button id="save-destinations">Save Destinations</button>
+        </section>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

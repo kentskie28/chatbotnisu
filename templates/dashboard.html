@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - NISU AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <!-- Font Awesome CDN for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+</head>
+<style>
+    /* Pagination Styling */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination button {
+        padding: 10px 15px;
+        margin: 0 5px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .pagination button:hover {
+        background-color: #0056b3;
+    }
+
+    .pagination .active {
+        background-color: #0056b3;
+    }
+
+    .pagination button:disabled {
+        background-color: #e0e0e0;
+        cursor: not-allowed;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 200px;
+        }
+
+        #dashboard-container {
+            margin-left: 220px;
+            width: calc(100% - 220px);
+        }
+
+        .sidebar .logo {
+            font-size: 1.2rem;
+        }
+
+        .sidebar .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+        }
+
+        .action-buttons button {
+            font-size: 0.9rem;
+            padding: 8px 15px;
+        }
+    }
+</style>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+            <div class="logo">
+              <i class="fas fa-brain"></i> NISU - BOT
+            </div>
+          
+        <ul class="nav-links">
+            <li><a href="{{ url_for('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="{{ url_for('train_model') }}"><i class="fas fa-wrench"></i> Training</a></li>
+            <li><a href="{{ url_for('settings_page') }}"><i class="fas fa-cogs"></i> Settings</a></li>
+            <li><a href="{{ url_for('view_feedback') }}"><i class="fas fa-user-circle"></i> User Feedback</a></li>
+            <li><a href="{{ url_for('index_get') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+    <div id="dashboard-container">
+        <section>
+            <div class="header">
+                <h1>Intent Dashboard</h1>
+                
+                <div class="action-buttons">
+                    <input type="text" id="search-bar" placeholder="Search intents..." class="search-bar">
+                    <button id="add-intent" class="btn primary">Add New Intent</button>
+                    <button id="edit-table" class="btn secondary">Edit</button>
+                    <button id="save-table" class="btn success" style="display: none;">Save</button>
+                </div>
+            </div>
+
+            <div id="add-intent-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Add New Intent</h3>
+                    <form id="add-intent-form">
+                        <label for="new-tag">Tag:</label>
+                        <input type="text" id="new-tag" placeholder="Enter tag" required>
+
+                        <label for="new-patterns">Patterns (comma-separated):</label>
+                        <textarea id="new-patterns" placeholder="e.g., Hi, Hello"></textarea>
+
+                        <label for="new-responses">Responses (comma-separated):</label>
+                        <textarea id="new-responses" placeholder="e.g., Hi there, Hello!"></textarea>
+
+                        <label for="new-context">Context (optional):</label>
+                        <input type="text" id="new-context" placeholder="e.g., Greeting">
+
+                        <label for="new-suggestions">Suggestions (optional, comma-separated):</label>
+                        <textarea id="new-suggestions" placeholder="e.g., NISU West, Cashier"></textarea>
+
+                        <div class="modal-actions">
+                            <button type="button" id="save-new-intent" class="btn primary">Save</button>
+                            <button type="button" id="cancel-add-intent" class="btn secondary">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="intents-table">
+                    <thead>
+                        <tr>
+                            <th>Tag</th>
+                            <th>Patterns</th>
+                            <th>Responses</th>
+                            <th>Secondary Responses</th>
+                            <th>Context</th>
+                            <th>Suggestions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic rows will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+<div class="pagination" id="pagination">
+</div>
+
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2024 NISU AI. All rights reserved.
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NISU AI</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <style>
+            /* Additional style for edit buttons */
+            button[onclick="saveContent()"] {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                z-index: 1000;
+                background-color: #007bff;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            button[onclick="saveContent()"]:hover {
+                background-color: #0056b3;
+            }
+
+            .edit-btn {
+                background-color: #007bff;
+                color: white;
+                padding: 5px 10px;
+                margin-left: 10px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .edit-btn:hover {
+                background-color: #0056b3;
+            }
+
+            .editable-highlight {
+                background-color: rgba(0, 123, 255, 0.1);
+                border: 2px dashed #007bff;
+            }
+
+            .edit-header-footer-btn {
+                background-color: #28a745;
+            }
+
+            .edit-header-footer-btn:hover {
+                background-color: #218838;
+            }
+
+            /* Styling for the color buttons */
+            .color-buttons {
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .color-buttons button {
+                padding: 10px 20px;
+                margin: 5px;
+                border: none;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="banner">
+            <div class="nav">
+                <img src="{{ url_for('static', filename='images/nisulogonobg.png') }}" class="logo">
+                <marquee><h1 contenteditable="true">Northern Iloilo State University - Chatbot</h1></marquee>
+                <ul class="btn">
+                    <li>
+                        <a href="{{ url_for('login') }}">
+                            <i class="fas fa-robot">&nbsp;&nbsp;Login</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <button onclick="saveContent()">Save All Changes</button>
+
+        <!-- Vision Section -->
+        <section class="vision">
+            <h2 contenteditable="true">VISION</h2>
+            <button class="edit-btn" onclick="editContent(this)">Edit</button>
+            <p contenteditable="true">A globally competitive State University in Asia.</p>
+            <button class="edit-btn" onclick="editContent(this)">Edit</button>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="mission">
+            <h2 contenteditable="true">MISSION</h2>
+            <button class="edit-btn" onclick="editContent(this)">Edit</button>
+            <p contenteditable="true">Human resources development through quality and relevant education, environment-friendly modern technologies, and preservation of Filipino values and culture for sustainable and improved quality of life.</p>
+            <button class="edit-btn" onclick="editContent(this)">Edit</button>
+        </section>
+
+        <!-- Goals Section -->
+        <section class="goals">
+            <h2 contenteditable="true">GOALS</h2>
+            <button class="edit-btn" onclick="editContent(this)">Edit</button>
+            <p contenteditable="true">
+                The College shall have the following goals:<br><br>
+                1. Produce human capital imbued with scientific and technological skills endowed with desirable values and work ethics.<br>
+                2. Provide quality education in the fields of industry, agriculture, fisheries, technology, sciences, education, and other relevant undergraduate and graduate programs.<br>
+                3. Establish a university research culture responsive to community and global needs.<br>
+                4. Enhance research-based extension programs and transfer of sustainable technologies.<br>
+                5. Maximize productivity through efficient and effective resource management.<br>
+                6. Strengthen linkages with local, national and international partner-agencies.<br>
+            </p>
+            <button class="edit-btn" onclick="editContent(this)">Edit</button>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <p contenteditable="true">&copy; 2024 Northern Iloilo State University. All Rights Reserved.</p>
+            <p contenteditable="true">Developed by: <a href="">Carnaje, Gabriel Isaiah H.</a> | <a href="">Arsola, Kent Earl D.</a> | <a href="">Dela Cruz, Juan</a> |<a href="">Dela Cruz, Juan</a></p>
+        </footer>
+
+        <!-- Color change buttons -->
+        <div class="color-buttons">
+            <button onclick="changeBannerColor()">Change Banner Color</button>
+            <button onclick="changeFooterColor()">Change Footer Color</button>
+        </div>
+
+        <script>
+            // Function to make the content editable
+            function editContent(button) {
+                const section = button.previousElementSibling;
+                section.contentEditable = (section.contentEditable === "true" ? "false" : "true");
+                button.innerText = (section.contentEditable === "true" ? "Save" : "Edit");
+                section.classList.toggle('editable-highlight');
+            }
+
+            function saveContent() {
+                const editableSections = document.querySelectorAll('section');
+                let htmlContent = '';
+                
+                // Collect only the content of editable sections, excluding the edit buttons
+                editableSections.forEach(section => {
+                    const sectionClone = section.cloneNode(true);
+                    const buttons = sectionClone.querySelectorAll('.edit-btn');
+                    buttons.forEach(button => {
+                        button.remove();
+                    });
+
+                    sectionClone.querySelectorAll('[spellcheck], [data-ms-editor]').forEach(element => {
+                        element.removeAttribute('spellcheck');
+                        element.removeAttribute('data-ms-editor');
+                    });
+
+                    htmlContent += sectionClone.outerHTML;
+                });
+
+                fetch('/save_base_html', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ htmlContent: htmlContent })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Changes saved successfully!');
+                    } else {
+                        alert('Error saving changes.');
+                    }
+                })
+                .catch(error => {
+                    alert('An error occurred: ' + error);
+                });
+            }
+
+            // Function to change the banner color
+            function changeBannerColor() {
+                const banner = document.querySelector('.banner');
+                const newColor = prompt("Enter a color for the banner (e.g., 'red', '#ff5733'):");
+                if (newColor) {
+                    banner.style.backgroundColor = newColor;
+                }
+            }
+
+            // Function to change the footer color
+            function changeFooterColor() {
+                const footer = document.querySelector('.footer');
+                const newColor = prompt("Enter a color for the footer (e.g., 'blue', '#333'):");
+                if (newColor) {
+                    footer.style.backgroundColor = newColor;
+                }
+            }
+        </script>
+    </body>
+</html>

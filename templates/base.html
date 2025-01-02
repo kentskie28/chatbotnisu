@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NISU AI</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <!-- Font Awesome CDN for icons -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    </head>
+    <body>
+        <div class="banner">
+            <div class="nav">
+                <img src="{{ url_for('static', filename='images/nisulogonobg.png') }}" class="logo">
+                <marquee><h1>Northern Iloilo State University - Chatbot</h1></marquee>
+                <ul class="btn">
+                    <ul class="btn">
+                        <li>
+                            <a href="{{ url_for('login') }}">
+                                <i class="fas fa-robot">&nbsp;&nbsp;Login</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('feedback') }}">
+                                <i class="fas fa-user-circle">&nbsp;&nbsp;Feedback</i>
+                            </a>
+                        </li>
+                    </ul>                    
+                </ul>
+            </div>
+        </div>
+
+        <!-- Vision Section -->
+        <section class="vision">
+            <h2 contenteditable="true">VISION</h2>
+            
+            <p contenteditable="true">A globally competitive State University in Asia.</p>
+            
+        </section><section class="mission">
+            <h2 contenteditable="true">MISSION</h2>
+            
+            <p contenteditable="true">Human resources development through quality and relevant education, environment-friendly modern technologies, and preservation of Filipino values and culture for sustainable and improved quality of life.</p>
+            
+        </section><section class="goals">
+            <h2 contenteditable="true">GOALS</h2>
+            
+            <p contenteditable="true">
+                The College shall have the following goals:<br><br>
+                1. Produce human capital imbued with scientific and technological skills endowed with desirable values and work ethics.<br>
+                2. Provide quality education in the fields of industry, agriculture, fisheries, technology, sciences, education, and other relevant undergraduate and graduate programs.<br>
+                3. Establish a university research culture responsive to community and global needs.<br>
+                4. Enhance research-based extension programs and transfer of sustainable technologies.<br>
+                5. Maximize productivity through efficient and effective resource management.<br>
+                6. Strengthen linkages with local, national and international partner-agencies.<br>
+            </p>
+            
+        </section>
+        <section class="core-values">
+            <h2>CORE VALUES</h2>
+            <p><strong>C</strong> - ommunicative</p>
+            <p><strong>R</strong> - esearch oriented</p>
+            <p><strong>E</strong> - xcellent time manager</p>
+            <p><strong>A</strong> - cademically competent</p>
+            <p><strong>T</strong> - echnically equipped</p>
+            <p><strong>I</strong> - nnovative</p>
+            <p><strong>V</strong> - alues oriented</p>
+            <p><strong>E</strong> - nvironment friendly</p>
+        </section>
+
+        <!-- Purposes Section -->
+        <section class="purposes">
+            <h2>PURPOSES</h2>
+            <p>
+                The Northern Iloilo State University has the following purposes:<br><br>
+                1. Provide advanced and higher education and training in various fields including industry, agriculture, fisheries, arts, sciences, education, management, hospitality & tourism, IT, engineering, criminal justice, and more.<br>
+                2. Promote progressive leadership in research and advanced studies across various fields.<br>
+                3. Undertake sustainable extension activities for technology transfer and solving social problems.<br>
+                4. Enhance its critical role in community development.<br>
+            </p>
+        </section>
+
+        <div class="container">
+            <div class="chatbox chatbox--hidden">
+                <div class="chatbox__support">
+                    <div class="chatbox__header">
+                        <div class="chatbox__image--header">
+                            <img src="{{ url_for('static', filename='images/nisulogonobg.png') }}" alt="image">
+                        </div>
+                        <div class="chatbox__content--header">
+                            <h4 class="chatbox__heading--header">NISU BOT</h4>
+                            <p class="chatbox__description--header">Northern Iloilo State University Chatbot Support</p>
+                        </div>
+                        <button class="chatbox__exit">X</button>
+                    </div>
+                    <div class="chatbox__messages">
+                        <div id="welcome-message" class="welcome-message">
+                            How can i help you today?
+                        </div>
+                        <div></div>
+                        <div class="suggested-replies"></div>
+                        <div class="start-suggestion-container">
+                            <a href="javascript:void(0);" onclick="redirectToMap()">
+                                <button class="start-suggestion-button">Directional</button>
+                            </a>                            
+                            <button class="start-suggestion-button" data-input="Procedural Support">Procedural</button>
+                        </div>
+                    </div>
+                    <div id="map-button-container" class="map-button-container"></div>
+                    <div class="chatbox__footer">
+                        <select id="language-select">
+                            <option value="english">English</option>
+                            <option value="tagalog">Tagalog</option>
+                        </select>
+                        <input type="text" placeholder="Write a message...">
+                        <button class="chatbox__send--footer send__button">➤</button>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbox__button">
+                <button id="chat_button"><img src="{{ url_for('static', filename='images/nisulogonobg.png') }}" /></button>
+                <button id="close_chatbox_button" style="display: none;"></button>
+            </div>
+        </div>
+
+        <footer class="footer" id="footer">
+            <p>&copy; 2024 Northern Iloilo State University. All Rights Reserved.</p>
+            <p>Developed by: <a href="">Carnaje, Gabriel Isaiah H.</a> | <a href="">Arsola, Kent Earl D.</a> | <a href="">Amen, Princess Mae</a> |<a href="">Atido, Rogelio Jr.</a></p>
+        </footer>
+        
+        <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+        
+    </body>
+</html>

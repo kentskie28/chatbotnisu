@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/map.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="banner">
+        <div class="nav">
+            <img src="{{ url_for('static', filename='images/nisulogonobg.png') }}" class="logo">
+            <h1>Northern Iloilo State University</h1>
+            <ul class="btn">
+                <li><a href="{{ url_for('login') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h2>DIRECTIONAL SUPPORT</h2><i class='fas fa-map' style='font-size:36px'></i>
+            <a href="http://localhost:5000">
+                <button class="logout">Click here to go back</button>
+            </a>
+        </div>
+        <div class="select-container">
+            <select id="destination-select">
+                <option value="">Select a destination here</option>
+            </select>
+            <a href="{{ url_for('login') }}">
+        </a>
+        </div>
+        <div id="map"></div>
+        <div id="lightbox" style="display:none;">
+            <div id="lightbox-content">
+                <span id="close-lightbox" style="cursor:pointer;">&times;</span>
+                <img id="lightbox-image" src="" alt="Destination Image">
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+</body>
+</html>
