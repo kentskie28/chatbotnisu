@@ -1,0 +1,168 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Light background for feedback page */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Banner */
+.banner {
+    width: 100%;
+    background-color: rgb(0, 36, 199); /* Same as in your previous design */
+    padding: 10px 0;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.nav h1 {
+    color: white;
+    font-size: 24px;
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav ul li {
+    margin-left: 15px;
+}
+
+.nav ul li a {
+    color: white;
+    background: -webkit-linear-gradient(0deg, transparent 50%, white 50%);
+    background-size: 400px 80px;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px;
+    transition: 0.8s;
+    border-radius: 20px;
+}
+
+.nav ul li a:hover {
+    background-position: 200px 0;
+    color: black;
+}
+
+/* Feedback Form */
+#feedbackForm {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#feedbackForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+#feedbackForm input[type="number"], #feedbackForm textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+#feedbackForm input[type="number"]:focus, #feedbackForm textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+#feedbackForm button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#feedbackForm button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    #feedbackForm {
+        padding: 15px;
+    }
+
+    #feedbackForm label {
+        font-size: 12px;
+    }
+
+    #feedbackForm input[type="number"], #feedbackForm textarea {
+        font-size: 14px;
+    }
+
+    #feedbackForm button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
