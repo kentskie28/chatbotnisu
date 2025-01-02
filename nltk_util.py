@@ -1,9 +1,14 @@
 import numpy as np
 import nltk
 from nltk.stem.porter import PorterStemmer
+from nltk.corpus import stopwords
 stemmer = PorterStemmer()
 
 
+def tokenize_and_clean(sentence):
+    words = tokenize(sentence)
+    stop_words = set(stopwords.words('english'))
+    return [stem(w) for w in words if w not in stop_words]
 def tokenize(sentence):
     """
     split sentence into array of words/tokens
@@ -34,7 +39,6 @@ def bag_of_words(tokenized_sentence, words):
     """
     # stem each word
     sentence_words = [stem(word) for word in tokenized_sentence]
-    # initialize bag with 0 for each word
     bag = np.zeros(len(words), dtype=np.float32)
     for idx, w in enumerate(words):
         if w in sentence_words: 

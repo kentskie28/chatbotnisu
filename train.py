@@ -6,15 +6,13 @@ from nltk_util import tokenize, stem, bag_of_words
 from model import NeuralNet
 from torch.utils.data import Dataset, DataLoader
 
-# Load the intents file
-with open('intents.json', 'r') as f:
+with open('data/intents.json', 'r') as f:
     intents = json.load(f)
 
 all_words = []
 tags = []
 xy = []
 
-# Loop through intents patterns to extract words
 for intent in intents['intents']:
     tag = intent['tag']
     tags.append(tag)
@@ -29,7 +27,7 @@ all_words = [stem(w) for w in all_words if w not in ignore_words]
 all_words = sorted(set(all_words))
 tags = sorted(set(tags))
 
-# Training data
+
 X_train = []
 y_train = []
 
@@ -43,7 +41,6 @@ for (pattern_sentence, tag) in xy:
 X_train = np.array(X_train)
 y_train = np.array(y_train)
 
-# Hyperparameters
 input_size = len(X_train[0])
 hidden_size = 8
 output_size = len(tags)
@@ -63,14 +60,11 @@ class ChatDataset(Dataset):
     def __len__(self):
         return self.n_samples
 
-# DataLoader
 dataset = ChatDataset()
 train_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True)
 
-# Model
 model = NeuralNet(input_size, hidden_size, output_size)
 
-# Loss and optimizer
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
@@ -78,7 +72,6 @@ print(len(xy), "patterns")
 print(len(tags), "tags:", tags)
 print(len(all_words), "unique stemmed words:", all_words)
 
-# Training loop
 for epoch in range(num_epochs):
     for (words, labels) in train_loader:
         words = torch.tensor(words, dtype=torch.float32)
